@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivedha S | Business & Technology Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- BRANDING & VARIABLES --- */
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #ca8a04;
+            --accent-hover: #eab308;
+            --card-border: rgba(255, 255, 255, 0.05);
+            --nav-height: 80px; /* Fixed height for nav */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); line-height: 1.2; }
+        a { text-decoration: none; transition: all 0.3s ease; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 1rem 8%;
+            height: var(--nav-height); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .btn-cta {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .btn-cta:hover { background: var(--accent); color: var(--bg-primary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh; 
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            /* Padding top ensures text isn't hidden by nav */
+            padding-top: var(--nav-height); 
+            background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 60%);
+        }
+
+        .hero-content { max-width: 700px; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 600px; }
+
+        .btn-fill {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+        .btn-fill:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+        /* --- ABOUT SECTION --- */
+        .about-section {
+            padding: 8rem 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .story-text p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+        .about-image-wrapper {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top; 
+            filter: brightness(0.95) contrast(1.05); 
+            transition: transform 0.5s ease;
+        }
+
+        .about-image-wrapper:hover .profile-photo { transform: scale(1.03); }
+        
+        .stat-card {
+            position: absolute;
+            bottom: 20px;
+            left: -20px;
+            background: var(--bg-primary);
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        /* --- SKILLS --- */
+        .skills-section { padding: 6rem 8%; background: var(--bg-secondary); }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        
+        .skill-column h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skill-bar {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* --- PROJECTS --- */
+        .projects-section { padding: 8rem 8%; }
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 4rem; 
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s;
+            min-height: 400px;
+        }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .project-info { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+        
+        .project-visual { 
+            background: #2a3850; 
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+        
+        .project-card:hover .project-img { filter: grayscale(0%); }
+
+        .project-role { color: var(--accent); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .project-info h3 { font-size: 2rem; margin-bottom: 1.5rem; }
+        
+        .outcome-box {
+            background: rgba(202, 138, 4, 0.1);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        /* --- BLOG --- */
+        .blog-section { padding: 6rem 8%; background: var(--bg-secondary); }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .blog-card { background: var(--bg-primary); padding: 2rem; border-radius: 6px; border: 1px solid var(--card-border); }
+        .blog-date { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: block;}
+        .blog-card h4 { font-size: 1.3rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        .blog-link { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+
+        /* --- CONTACT --- */
+        .contact-section { padding: 8rem 8%; text-align: center; }
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--card-border);
+            padding: 3rem;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+        }
+        .social-row { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+        .social-icon { font-size: 1.5rem; color: var(--text-secondary); }
+        .social-icon:hover { color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--card-border); color: var(--text-secondary); font-size: 0.9rem; }
+
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-section { grid-template-columns: 1fr; }
+            .project-card { grid-template-columns: 1fr; }
+            .project-visual { height: 250px; }
+            .nav-links { display: none; }
+            .stat-card { left: 0; bottom: -20px; }
+            .hero { padding-top: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Nivedha S<span style="color: var(--accent);">.</span></div>
+        <div class="nav-links">
+            <a href="#about">The Story</a>
+            <a href="#skills">Capabilities</a>
+            <a href="#projects">Case Studies</a>
+            <a href="#insights">Insights</a>
+            <a href="resume.pdf" target="_blank" style="color: var(--accent);"><i class="fas fa-file-pdf"></i> CV</a>
+        </div>
+        <a href="#contact" class="btn-cta">Get in Touch</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Strategy Powered by <br><span style="color: var(--accent);">Code & Commerce.</span></h1>
+            <p>I am an MBA candidate with a Computer Science background, helping businesses translate complex data into actionable financial and marketing strategies.</p>
+            <div>
+                <a href="#projects" class="btn-fill">View Case Studies</a>
+                <a href="resume.pdf" target="_blank" class="btn-cta" style="border-color: var(--text-secondary); color: var(--text-primary);">
+                    <i class="fas fa-download"></i> Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-image-wrapper">
+            <img src="profile.jpg" alt="Nivedha S" class="profile-photo">
+            
+            <div class="stat-card">
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">MBA + B.Tech</div>
+                <div style="font-size: 0.9rem; color: var(--accent);">Dual Competency</div>
+            </div>
+        </div>
+
+        <div class="story-text">
+            <h2>My Journey</h2>
+            <p>My career began in the logic-driven world of Computer Science, where I learned that every problem has a structured solution. As I worked on developing ERP systems and automation scripts, I realized that while code powers the product, <strong>strategy powers the business.</strong></p>
+            <p>This realization led me to pursue my MBA at Amrita School of Business. Today, I don't just write code; I use my technical fluency to perform deep market research, financial analysis, and operational optimization.</p>
+            <p>My goal is simple: To work at the intersection of technology and management, using data to drive decisions that matter.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="skills-grid">
+            <div class="skill-column">
+                <h3>Analytical & Financial</h3>
+                <div class="skill-bar">Market Research & Survey Analysis</div>
+                <div class="skill-bar">Financial Modeling & Forecasting</div>
+                <div class="skill-bar">Data Visualization (Power BI)</div>
+            </div>
+            <div class="skill-column">
+                <h3>Technical</h3>
+                <div class="skill-bar">Python & R Language</div>
+                <div class="skill-bar">SQL Database Management</div>
+                <div class="skill-bar">Prompt Engineering & AI Workflows</div>
+            </div>
+            <div class="skill-column">
+                <h3>Business Strategy</h3>
+                <div class="skill-bar">Strategic Decision Making</div>
+                <div class="skill-bar">Consumer Behavior Analysis</div>
+                <div class="skill-bar">Report Development & Storytelling</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Selected Case Studies</h2>
+        
+        <div class="project-card">
+            <div class="project-info">
+                <span class="project-role">Market Research & Analytics</span>
+                <h3>Gen-Z Career Trends Analysis</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    <strong>The Challenge:</strong> Understanding the shifting career preferences of the post-pandemic workforce.
+                </p>
+                <div class="outcome-box">
+                    <strong>Outcome:</strong> Enhanced reporting efficiency by 30% and provided actionable recruitment recommendations.
+                </div>
+            </div>
+            <div class="project-visual">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data Analytics" class="project-img">
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-info">
+                <span class="project-role">Retail Strategy & Data Mining</span>
+                <h3>Market Basket Analysis</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    <strong>The Challenge:</strong> A retail client needed to increase average order value through product bundling.
+                </p>
+                <div class="outcome-box">
+                    <strong>Outcome:</strong> Developed a data-backed bundling strategy to optimize cross-selling.
+                </div>
+            </div>
+            <div class="project-visual">
+                <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=800&q=80" alt="Retail Analysis" class="project-img">
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-info">
+                <span class="project-role">Financial Analytics</span>
+                <h3>ESG Performance Dashboard</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    <strong>The Challenge:</strong> Investors lacked a clear view of the company's sustainability metrics.
+                </p>
+                <div class="outcome-box">
+                    <strong>Outcome:</strong> Streamlined data presentation for stakeholder meetings.
+                </div>
+            </div>
+            <div class="project-visual">
+                <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80" alt="ESG Finance" class="project-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="insights" class="blog-section">
+        <h2 class="section-title">Insights & Perspective</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <span class="blog-date">Oct 2025</span>
+                <h4>The Role of AI in Modern Market Research</h4>
+                <a href="https://medium.com/@nivedha207_51205" class="blog-link">Read on Medium <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="blog-card">
+                <span class="blog-date">Sep 2025</span>
+                <h4>Why SaaS Companies Need Stronger ESG Metrics</h4>
+                <a href="https://medium.com/@nivedha207_51205" class="blog-link">Read on Medium <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="blog-card">
+                <span class="blog-date">Aug 2025</span>
+                <h4>Data Visualization: Storytelling with Numbers</h4>
+                <a href="https://medium.com/@nivedha207_51205" class="blog-link">Read on Medium <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-box">
+            <h2>Let's Create Value Together</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                I am currently open to opportunities in Market Research, Business Analytics, and Strategy.
+            </p>
+            <a href="mailto:nivedha207@gmail.com" class="btn-fill">Email Me</a>
+            
+            <div class="social-row">
+                <a href="https://linkedin.com/in/nivedha-s-5670a936a" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://medium.com/@nivedha207_51205" class="social-icon"><i class="fab fa-medium"></i></a>
+                <a href="https://github.com/Nivehhh" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="resume.pdf" class="social-icon" target="_blank" title="Download Resume"><i class="fas fa-file-pdf"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Nivedha S. Built with code & strategy.</p>
+    </footer>
+
+</body>
+</html>
